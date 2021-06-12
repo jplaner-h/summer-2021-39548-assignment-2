@@ -29,6 +29,24 @@ Array.prototype.myFilter = function(callbackFn) {
     return newArr;
 };
 
+Array.prototype.mySome = function(callbackFn) {
+    for(let i = 0; i < this.length; i++) {
+        if(callbackFn(this[i], i, this)) {
+            return true;
+        }
+    }
+};
+
+Array.prototype.myEvery = function(callbackFn) {
+    for(let i = 0; i < this.length; i++) {
+        if(callbackFn(this[i], i, this) === false) {
+            return false;
+        }
+    }
+    
+    return true;
+};
+
 Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length =this.length;
@@ -39,10 +57,3 @@ Array.prototype.myPush = function(...args) {
 
     return this.length;
 };
-
-const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.myFilter(word => word.length > 6);
-
-console.log(result);
-// expected output: Array ["exuberant", "destruction", "present"]
