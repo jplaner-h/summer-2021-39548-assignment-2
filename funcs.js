@@ -8,7 +8,11 @@ Array.prototype.myEach = function(callbackFn) {
 };
 
 Array.prototype.myMap = function(callbackFn) {
-    
+    newArr = [];
+    for(let i = 0; i < this.length; i++) {
+        newArr[i] = callbackFn(this[i], i, this);
+    }
+    return newArr;
 };
 
 Array.prototype.myPush = function(...args) {
@@ -22,5 +26,5 @@ Array.prototype.myPush = function(...args) {
     return this.length;
 };
 
-arr = [1,2,3,4,5];
-console.log(arr[10]);
+arr = [1, 2, 3, 4, 5]
+testMap = arr.myMap(x => x * 2);
