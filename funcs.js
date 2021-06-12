@@ -12,6 +12,20 @@ Array.prototype.myMap = function(callbackFn) {
     for(let i = 0; i < this.length; i++) {
         newArr[i] = callbackFn(this[i], i, this);
     }
+
+    return newArr;
+};
+
+Array.prototype.myFilter = function(callbackFn) {
+    newArr = [];
+    pos = 0;
+    for(let i = 0; i < this.length; i++) {
+        if(callbackFn(this[i], i, this)) {
+            newArr[pos] = this[i];
+            pos++;
+        }
+    }
+
     return newArr;
 };
 
@@ -26,5 +40,9 @@ Array.prototype.myPush = function(...args) {
     return this.length;
 };
 
-arr = [1, 2, 3, 4, 5]
-testMap = arr.myMap(x => x * 2);
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.myFilter(word => word.length > 6);
+
+console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
