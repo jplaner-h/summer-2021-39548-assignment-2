@@ -100,6 +100,17 @@ Array.prototype.myIndexOf = function(searchElement, fromIndex = 0) {
     return  -1;
 };
 
+Array.prototype.myPush = function(...args) {
+    let arg_i = 0;
+    let length =this.length;
+    for(let i = length; i < length + args.length; i++) {
+        this[i] = args[arg_i];
+        arg_i++
+    }
+
+    return this.length;
+};
+
 Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length -1) {
     if(fromIndex < 0) {
         fromIndex = this.length + fromIndex;
@@ -117,13 +128,24 @@ Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length 
     return  -1;
 };
 
-Array.prototype.myPush = function(...args) {
-    let arg_i = 0;
-    let length =this.length;
-    for(let i = length; i < length + args.length; i++) {
-        this[i] = args[arg_i];
-        arg_i++
+Object.grabKeys = function(obj) {
+    keyArray = [];
+    pos = 0;
+    for(property in obj) {
+        keyArray[pos] = property;
+        pos++;
     }
 
-    return this.length;
+    return keyArray;
+};
+
+Object.grabValues = function(obj) {
+    valueArray = [];
+    pos = 0;
+    for(values in obj) {
+        valueArray[pos] = property;
+        pos++;
+    }
+
+    return valueArray;
 };
