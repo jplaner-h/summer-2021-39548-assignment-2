@@ -47,6 +47,24 @@ Array.prototype.myEvery = function(callbackFn) {
     return true;
 };
 
+Array.prototype.myReduce = function(callbackFn, initialValue) {
+    if(initialValue != undefined) {
+        accumulator = initialValue;
+        for(let i = 0; i < this.length; i++) {
+            currentValue = this[i];
+            accumulator = callbackFn(accumulator, currentValue, i, this);
+        }
+    } else {
+        accumulator = this[0]
+        for(let i = 1; i < this.length; i++) {
+            currentValue = this[i];
+            accumulator = callbackFn(accumulator, currentValue, i, this);
+        }
+    }
+
+    return accumulator;
+};
+
 Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length =this.length;
@@ -57,3 +75,14 @@ Array.prototype.myPush = function(...args) {
 
     return this.length;
 };
+
+const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array1.myReduce(reducer));
+// expected output: 10
+
+// 5 + 1 + 2 + 3 + 4
+console.log(array1.myReduce(reducer, 5));
+// expected output: 15
