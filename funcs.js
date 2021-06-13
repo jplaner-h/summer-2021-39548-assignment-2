@@ -100,6 +100,23 @@ Array.prototype.myIndexOf = function(searchElement, fromIndex = 0) {
     return  -1;
 };
 
+Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length -1) {
+    if(fromIndex < 0) {
+        fromIndex = this.length + fromIndex;
+    }
+    if(fromIndex >= this.length || fromIndex < 0) {
+        return -1;
+    }
+
+    for(let i = fromIndex; i >= 0; i--) {
+        if(this[i] === searchElement) {
+            return i;
+        }
+    }
+    
+    return  -1;
+};
+
 Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length =this.length;
@@ -110,15 +127,3 @@ Array.prototype.myPush = function(...args) {
 
     return this.length;
 };
-
-const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
-
-console.log(beasts.myIndexOf('bison'));
-// expected output: 1
-
-// start from index 2
-console.log(beasts.myIndexOf('bison', 2));
-// expected output: 4
-
-console.log(beasts.myIndexOf('giraffe'));
-// expected output: -1
