@@ -65,6 +65,24 @@ Array.prototype.myReduce = function(callbackFn, initialValue) {
     return accumulator;
 };
 
+Array.prototype.myIncludes = function(searchElement, fromIndex = 0) {
+    if(fromIndex < 0) {
+        fromIndex = this.length + fromIndex;
+    }
+
+    if(fromIndex >= this.length) {
+        return false;
+    }
+
+    for(let i = fromIndex; i < this.length; i++) {
+        if(this[i] === searchElement) {
+            return true;
+        }
+    }
+
+    return false;
+};
+
 Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length =this.length;
@@ -75,14 +93,3 @@ Array.prototype.myPush = function(...args) {
 
     return this.length;
 };
-
-const array1 = [1, 2, 3, 4];
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
-// 1 + 2 + 3 + 4
-console.log(array1.myReduce(reducer));
-// expected output: 10
-
-// 5 + 1 + 2 + 3 + 4
-console.log(array1.myReduce(reducer, 5));
-// expected output: 15
